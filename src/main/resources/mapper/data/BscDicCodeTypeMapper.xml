@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gupaoedu.live.gupaoedulive.modules.sys.mapper.BscDicCodeTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.gupaoedu.live.gupaoedulive.modules.sys.model.BscDicCodeType" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="TYPE_CODE" property="typeCode" jdbcType="VARCHAR" />
+    <result column="TYPE_NAME" property="typeName" jdbcType="VARCHAR" />
+    <result column="IS_ACTIVE" property="isActive" jdbcType="CHAR" />
+    <result column="TYPE_MEMO" property="typeMemo" jdbcType="VARCHAR" />
+    <result column="create_Time" property="createTime" jdbcType="DATE"/>
+  </resultMap>
+
+  <insert id="myInsertUseGeneratedKeys" useGeneratedKeys="true" keyProperty="id" parameterType="com.gupaoedu.live.gupaoedulive.modules.sys.model.BscDicCodeType">
+    insert into bsc_dic_code_type(TYPE_CODE,TYPE_NAME,IS_ACTIVE,TYPE_MEMO) VALUES (#{typeCode},#{typeName},#{isActive},#{typeMemo})
+  </insert>
+</mapper>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gupaoedu.live.gupaoedulive.modules.sys.mapper.BscDicCodeItemMapper" >
+  <resultMap id="BaseResultMap" type="com.gupaoedu.live.gupaoedulive.modules.sys.model.BscDicCodeItem" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="TYPE_ID" property="typeId" jdbcType="INTEGER" />
+    <result column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+    <result column="ITEM_NAME" property="itemName" jdbcType="VARCHAR" />
+    <result column="IS_ACTIVE" property="isActive" jdbcType="CHAR" />
+    <result column="SORT_NO" property="sortNo" jdbcType="INTEGER" />
+    <result column="ITEM_MEMO" property="itemMemo" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="getBscDicCodeItemListByTypeCode" parameterType="string" resultMap="BaseResultMap">
+      SELECT i.*
+      from bsc_dic_code_type t
+      JOIN bsc_dic_code_item i
+      on t.id=i.TYPE_ID
+      where t.TYPE_CODE=#{typeCode}
+  </select>
+
+  <select id="getBscDicCodeItemListByTypeCodeAndItemCode" resultMap="BaseResultMap">
+    SELECT i.*
+      from bsc_dic_code_type t
+      JOIN bsc_dic_code_item i
+      on t.id=i.TYPE_ID
+      where t.TYPE_CODE=#{typeCode}
+      and i.ITEM_CODE = #{itemCode};
+  </select>
+
+  <delete id="deleteByTypeId" parameterType="int">
+    DELETE from bsc_dic_code_item
+    where type_id=#{id}
+  </delete>
+
+</mapper>

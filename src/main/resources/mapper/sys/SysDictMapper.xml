@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gupaoedu.live.gupaoedulive.modules.sys.mapper.SysDictMapper">
+  <resultMap id="BaseResultMap" type="com.gupaoedu.live.gupaoedulive.modules.sys.model.SysDict">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="dict_name" jdbcType="VARCHAR" property="dictName" />
+    <result column="dict_value" jdbcType="VARCHAR" property="dictValue" />
+    <result column="dict_level" jdbcType="INTEGER" property="dictLevel" />
+    <result column="dict_state" jdbcType="INTEGER" property="dictState" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="dict_sort" jdbcType="INTEGER" property="dictSort" />
+  </resultMap>
+
+  <select id="getDictValueChild" resultMap="BaseResultMap">
+
+    SELECT *
+    FROM sys_dict t
+    where t.parent_id in(
+    SELECT id
+    from sys_dict
+    where dict_value=#{param.dictValue} and dict_state=0)
+    and t.dict_state=0 and t.id=#{param.id}
+  </select>
+</mapper>
